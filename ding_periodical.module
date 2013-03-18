@@ -97,7 +97,7 @@ function theme_ding_periodical_issues($variables) {
  *   Ting object local id, parent of periodical.
  * @param $periodical
  *   Periodical id.
- * @return type
+ * @return
  *   HTML markup.
  */
 function ding_periodical_holding_data($item = NULL, $volume = NULL, $issue = NULL) {
