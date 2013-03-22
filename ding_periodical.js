@@ -20,11 +20,15 @@
 
 
       $('.ding-periodical-issue').mouseover(function() {
-        $(this).next().show();
+        $(this).next('.item-list').show();
       });
 
       $('.ding-periodical-issue').mouseout(function() {
-        $(this).next().hide();
+        $(this).next('.item-list').hide();
+      });
+
+      $('.ding-periodical-issue').click(function() {
+        $(this).next('.item-list').hide();
       });
     }
   }
