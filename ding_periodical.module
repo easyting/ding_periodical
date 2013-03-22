@@ -33,6 +33,7 @@ function theme_ding_periodical_issues($variables) {
   foreach ($variables['elements']['#issues'] as $volume => $issues) {
     $iss = array();
 
+    // For periodicals without month period (year only).
     if (isset($issues['']['local_id'])) {
       $issue = '';
       $issue_id = $issues['']['local_id'];
@@ -53,6 +54,7 @@ function theme_ding_periodical_issues($variables) {
         'class' => array('ding-periodical-foldable'),
       );
     }
+    // For montly periodicals.
     else {
       foreach ($issues as $key => $availability) {
         $issue = $key;
@@ -87,10 +89,23 @@ function theme_ding_periodical_issues($variables) {
   return theme('item_list', array('items' => $items, 'attributes' => array('class' => array('ding-periodical-issues'))));
 }
 
+/**
+ * Store the data for further reservation routine.
+ *
+ * @param String $normalized_id
+ *   MD5 hash of the periodical id.
+ * @param String $issue_id
+ *   The issue identifier.
+ * @param String $volume
+ *   Volume, usualy presented as year.
+ * @param String $key
+ *   Issue name, as being displayed.
+ * @param TingObject $entity
+ *   The holder of the periodical.
+ */
 function ding_periodical_store_periodical($normalized_id = '', $issue_id = NULL, $volume = NULL, $key = NULL, $entity = NULL) {
   // @todo
   // This is to be refactored to prevent segfaults.
-
   if (!empty($issue_id) && module_exists('ding_periodical_reservation')) {
     $_SESSION['ding_periodical_reservation'][$normalized_id] = array(
       'issue_id' => $issue_id,
