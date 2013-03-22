@@ -50,28 +50,26 @@ function theme_ding_periodical_issues($variables) {
 
       $local_id = $variables['elements']['#entity']->localId;
       $holding_data = ding_periodical_holding_data($local_id, $volume, $issue);
-      $holding_data .= '<div class="periodical-reserve"><button>' . t('Reserve') . '</button></div>';
+      //$holding_data .= '<div class="periodical-reserve"><button>' . t('Reserve') . '</button></div>';
 
       $holding = array(array(
         'data' => '<div class="periodical-holdings">' . $holding_data . '</div>',
+        'class' => array('periodical-holdings'),
       ));
 
       // Normal behavior - periodicals, dc.type=tidsskrift.
       $iss[$i] = array(
-        'data' => '<span id="periodical-id-' . $normalized_id . '" class="' . drupal_html_class('ding_periodical_fold') . ' ding-reservable-periodical periodical-id-' . $normalized_id . '">' . $issue . '</span>',
+        'data' => '<span id="periodical-id-' . $normalized_id . '" class="ding-periodical-fold ding-periodical-issue">' . $issue . '</span>',
         'children' => $holding,
-        'class' => array(
-          drupal_html_class('ding-periodical-container'),
-        ),
       );
 
       // Suppose we have dc.type=årbog
       // Keys for those periodicals are empty.
       if (empty($issue)) {
         $iss[$i]['data'] = $holding[0]['data'];
-        $iss[$i]['class'][] = drupal_html_class('ding-periodical-no-issues');
-        $iss[$i]['class'][] = drupal_html_class('ding-reservable-periodical');
-        $iss[$i]['id'][] = drupal_html_id('periodical-id-' . $normalized_id);
+        $iss[$i]['class'][] = 'ding-periodical-no-issues';
+        $iss[$i]['class'][] = 'ding-reservable-periodical';
+        $iss[$i]['id'][] = 'periodical-id-' . $normalized_id;
         unset($iss[$i]['children']);
       }
 
@@ -79,15 +77,15 @@ function theme_ding_periodical_issues($variables) {
     }
 
     $vol = array(
-      'data' => '<div class="' . drupal_html_class('ding_periodical_fold') . '">' . $volume . '</div>',
+      'data' => '<div class="ding-periodical-fold expand">' . $volume . '</div>',
       'children' => $iss,
-      'class' => array(drupal_html_class('ding_periodical_foldable')),
+      'class' => array('ding-periodical-foldable'),
     );
 
     $items[] = $vol;
   }
 
-  return theme('item_list', array('items' => $items, 'attributes' => array('class' => drupal_html_class('ding_periodical_issues'))));
+  return theme('item_list', array('items' => $items, 'attributes' => array('class' => array('ding-periodical-issues'))));
 }
 
 /**
