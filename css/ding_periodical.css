@@ -33,19 +33,35 @@
   background: url(../images/arrow-down-blue.png) no-repeat scroll 0 11px transparent;
 }
 
+.ding-periodical-foldable .ding-periodical-fold.ding-periodical-issue + .item-list {
+  display: none;
+  left: -50px;
+  position: absolute;
+  z-index: 20;
+}
+
 .ding-periodical-foldable .item-list ul.ding-periodical-foldable {
   margin: 0 0 0 20px;
   padding: 0;
   background: none;
 }
 
-.ding-periodical-foldable .item-list ul.ding-periodical-foldable li {
+.ding-periodical-foldable .item-list li {
   background: url(../images/more-button-grey.png) no-repeat scroll 0 8px transparent;
   color: #44a8a4;
   font: 11px 'Soho Gothic W01 Light', Helvetica, Arial, sans-serif;
   letter-spacing: 0.2px;
   line-height: 27px;
   padding: 0 0 0 20px;
+}
+
+.ding-periodical-foldable .item-list li:hover {
+  background: url(../images/more-button-blue.png) no-repeat scroll 0 8px transparent;
+}
+
+.ding-periodical-foldable .item-list li.periodical-holdings,
+.ding-periodical-foldable .item-list li.periodical-holdings:hover {
+  background: transparent;
 }
 
 .ding-periodical-foldable .item-list ul.ding-periodical-foldable li.ding-periodical-no-issues {
@@ -55,15 +71,6 @@
 
 .ding-periodical-foldable .item-list ul.ding-periodical-foldable li span {
   margin: 0;
-}
-
-.ding-periodical-foldable .item-list ul.ding-periodical-foldable li:hover {
-  background: url(../images/more-button-blue.png) no-repeat scroll 0 8px transparent;
-}
-
-.ding-periodical-foldable .item-list ul.ding-periodical-foldable .ding-periodical-container li {
-  background: transparent;
-  padding: 0;
 }
 
 .ding-periodical-foldable .item-list ul.ding-periodical-foldable li:hover {
