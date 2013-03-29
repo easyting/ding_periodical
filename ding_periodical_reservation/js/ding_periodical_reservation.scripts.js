@@ -4,8 +4,8 @@
  */
 (function ($) {
   Drupal.extractPeriodicalId = function(ele) {
-    classname = $(ele).attr('id');
-    id = classname.match(/periodical-id-(.+)/);
+    var id_attr = $(ele).attr('id');
+    var id = id_attr.match(/periodical-id-(.+)/);
 
     if (id != null) {
       return id[1];
@@ -37,7 +37,7 @@
   Drupal.behaviors.ding_periodical_reservation = {
     attach: function (context, settings) {
       Drupal.ajax.prototype.commands.trigger_periodical_reservation = trigger_periodical_reservation;
-      $('.ding-reservable-periodical', context).once('ding-reservable-periodical', function() {
+      $('.ding-periodical-issue', context).once('ding-periodical-issue', function() {
         var id = Drupal.extractPeriodicalId($(this));
         if (id) {
           var element_settings = {};
@@ -46,7 +46,7 @@
           element_settings.progress = { type: 'throbber' };
           base = $(this).attr('id');
 
-          Drupal.ajax[base] = new Drupal.ajax(base, $(this).parent().find('.periodical-reserve button'), element_settings);
+          Drupal.ajax[base] = new Drupal.ajax(base, $(this), element_settings);
         }
       });
     }
