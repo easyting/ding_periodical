@@ -123,7 +123,7 @@ function ding_periodical_store_periodical($normalized_id = '', $issue_id = NULL,
  *   Ting object local id, parent of periodical.
  * @param $periodical
  *   Periodical id.
- * @return type
+ * @return
  *   HTML markup.
  */
 function ding_periodical_holding_data($item = NULL, $volume = NULL, $issue_id = NULL) {
