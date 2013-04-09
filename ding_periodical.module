@@ -4,7 +4,6 @@
  * @file
  * Shows issue information on periodicals.
  */
-
 // Load Field module hooks.
 module_load_include('inc', 'ding_periodical', 'ding_periodical.field');
 
@@ -29,8 +28,9 @@ function theme_ding_periodical_issues($variables) {
   $items = array();
   $entity = $variables['elements']['#entity'];
   $local_id = $entity->localId;
+  $elements = array_reverse($variables['elements']['#issues'], TRUE);
 
-  foreach ($variables['elements']['#issues'] as $volume => $issues) {
+  foreach ($elements as $volume => $issues) {
     $iss = array();
 
     // For periodicals without month period (year only).
@@ -43,10 +43,12 @@ function theme_ding_periodical_issues($variables) {
 
       $holding_data = ding_periodical_holding_data($local_id, $volume, $issue);
 
-      $holding = array(array(
-        'data' => '<div class="periodical-holdings">' . $holding_data . '</div>',
-        'class' => array('periodical-holdings'),
-      ));
+      $holding = array(
+        array(
+          'data' => '<div class="periodical-holdings">' . $holding_data . '</div>',
+          'class' => array('periodical-holdings'),
+        )
+      );
 
       $vol = array(
         'data' => '<div id="periodical-id-' . $normalized_id . '" class="ding-periodical-fold ding-periodical-issue">' . $volume . '</div>',
@@ -65,10 +67,12 @@ function theme_ding_periodical_issues($variables) {
 
         $holding_data = ding_periodical_holding_data($local_id, $volume, $issue);
 
-        $holding = array(array(
-          'data' => '<div class="periodical-holdings">' . $holding_data . '</div>',
-          'class' => array('periodical-holdings'),
-        ));
+        $holding = array(
+          array(
+            'data' => '<div class="periodical-holdings">' . $holding_data . '</div>',
+            'class' => array('periodical-holdings'),
+          )
+        );
 
         $iss[] = array(
           'data' => '<span id="periodical-id-' . $normalized_id . '" class="ding-periodical-fold ding-periodical-issue">' . $issue . '</span>',
