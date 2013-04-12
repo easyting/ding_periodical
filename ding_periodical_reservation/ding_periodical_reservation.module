@@ -72,7 +72,10 @@ function ding_periodical_reservation_ajax_reserve($id = '') {
     }
   }
 
-  return array('#type' => 'ajax', '#commands' => $commands);
+  return array(
+    '#type' => 'ajax',
+    '#commands' => $commands,
+  );
 }
 
 /**
@@ -83,7 +86,10 @@ function ding_periodical_reservation_ajax_reserve($id = '') {
  */
 function ding_periodical_reservation_trigger_periodical_reservation($entity_id = '') {
   if (!empty($entity_id)) {
-    return array('command' => 'trigger_periodical_reservation', 'data' => $entity_id);
+    return array(
+      'command' => 'trigger_periodical_reservation',
+      'data' => $entity_id,
+    );
   }
 }
 

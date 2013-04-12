@@ -65,7 +65,7 @@ function ding_periodical_field_formatter_view($entity_type, $entity, $field, $in
   $element = array();
   foreach ($items as $delta => $item) {
 
-    if ( !ding_provider_implements('availability', 'holdings') ) {
+    if (!ding_provider_implements('availability', 'holdings')) {
       return $element;
     }
 
