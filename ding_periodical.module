@@ -135,7 +135,7 @@ function ding_periodical_holding_data($item = NULL, $volume = NULL, $issue_id = 
   if (!empty($item)) {
     $holdings = &drupal_static(__FUNCTION__, NULL);
     if (!isset($holdings[$item])) {
-      $holdings = ding_provider_invoke('availability', 'holdings', array($item));
+      $holdings = ding_provider_invoke('availability', 'issues', array($item));
     }
 
     if (!empty($volume)) {
